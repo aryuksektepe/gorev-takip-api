@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Görev Takip Paneli</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 24px;
+    color: #222;
+  }
+  h1 {
+    color: #2b3a55;
+    font-size: 28px;
+    margin: 0 0 4px 0;
+  }
+  .alt-baslik {
+    color: #777777;
+    margin: 0 0 20px 0;
+    font-size: 13px;
+  }
+  .istatistikler {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .istatistik-kart {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 12px 16px;
+    min-width: 90px;
+  }
+  .istatistik-kart .sayi {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .istatistik-kart .etiket {
+    font-size: 11px;
+    color: #888888;
+    text-transform: uppercase;
+  }
+  .gorev-izgara {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .gorev-kart {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  .gorev-kart.tamamlandi {
+    opacity: 0.6;
+    text-decoration: line-through;
+  }
+  .oncelik {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #eeeeee;
+    color: #555555;
+    margin-top: 6px;
+  }
+  .durum {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #999999;
+  }
+</style>
+</head>
+<body>
+  <h1>Görev Takip Paneli</h1>
+  <p class="alt-baslik">gorev-takip-api &middot; public/dashboard.html</p>
+
+  <div class="istatistikler" id="istatistikler">
+    <div class="istatistik-kart"><div class="sayi">-</div><div class="etiket">Toplam</div></div>
+  </div>
+
+  <div class="gorev-izgara" id="gorevIzgara"></div>
+  <p class="durum" id="durum"></p>
+
+  <script>
+    async function panelYukle() {
+      const durumEl = document.getElementById('durum');
+      try {
+        const [gorevler, istatistik] = await Promise.all([
+          fetch('/tasks').then((r) => r.json()),
+          fetch('/stats').then((r) => r.json()),
+        ]);
+
+        const istatistiklerEl = document.getElementById('istatistikler');
+        istatistiklerEl.innerHTML = `
+          <div class="istatistik-kart"><div class="sayi">${istatistik.toplam}</div><div class="etiket">Toplam</div></div>
+          <div class="istatistik-kart"><div class="sayi">${istatistik.tamamlanan}</div><div class="etiket">Tamamlanan</div></div>
+          <div class="istatistik-kart"><div class="sayi">${istatistik.bekleyen}</div><div class="etiket">Bekleyen</div></div>
+        `;
+
+        const izgaraEl = document.getElementById('gorevIzgara');
+        izgaraEl.innerHTML = gorevler
+          .map(
+            (gorev) => `
+          <div class="gorev-kart ${gorev.tamamlandi ? 'tamamlandi' : ''}">
+            <div>${gorev.baslik}</div>
+            <span class="oncelik">${gorev.oncelik}</span>
+          </div>
+        `
+          )
+          .join('');
+      } catch (hata) {
+        durumEl.textContent = 'Panel yüklenemedi: ' + hata.message;
+      }
+    }
+
+    panelYukle();
+  </script>
+</body>
+</html>
