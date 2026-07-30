@@ -15,30 +15,27 @@ npm start         # http://localhost:3000 · /tasks, /stats, /dashboard.html
 
 ## Derslere göre bilerek bırakılan boşluklar
 
-Bu proje eğitim için hazırlandı; aşağıdakiler **kasıtlıdır**, hata bildirmeye gerek yok.
+Bu proje eğitim için hazırlandı. Aşağıdaki eksikler ve hatalar **kasıtlıdır**, hata bildirmeye
+gerek yok. Belirtileri yazıyoruz; kök nedenleri yazmıyoruz — derslerin yarısı zaten "belirtiden
+kök nedene inme" alıştırması, cevabı burada okursanız o alıştırma buharlaşır.
 
-**Ders 4.3 — bilinçli bug.** Bir görev `POST /tasks/:id/tamamla` ile tamamlandığında
-`GET /stats`'taki `tamamlanan` sayısı güncellenmiyor. Kök neden `src/stats.js`'te değil;
-`src/routes/tasks.js`'teki tamamlama uç noktası `stats.tamamlananiArttir()`'i çağırmayı
-atlıyor. `npm test` başlangıçta tamamen yeşil — çünkü bu senaryoyu sınayan bir test henüz
-yok. Derste önce kırmızı test yazılıyor, sonra düzeltiliyor.
+| Ders | Ne var / ne yok | Nasıl görünür |
+|---|---|---|
+| 4.3 | Bilinçli bug | Bir görev tamamlanınca `GET /stats`'taki `tamamlanan` sayısı artmıyor. `npm test` yine de tamamen yeşil — bu senaryoyu sınayan test yok. |
+| 4.4 | Eksik özellik | `GET /tasks?priority=high\|medium\|low` filtresi yok; derste TDD ile canlı ekleniyor. |
+| 4.7 | Tasarım farkı | `public/dashboard.html`, hedef tasarımdan birkaç noktada ayrılıyor. Farkları Claude'a buldurmak dersin kendisi. |
+| 4.8 | Refactor hedefi | `src/utils/fileStorage.js` callback tabanlı. `test/fileStorage.test.js` davranışı zaten kapsıyor; derste davranış korunarak async/await'e taşınıyor. |
+| 4.5 · 4.6 · 4.9 · 4.10 | Git ve GitHub | Branch, conflict, PR ve worktree senaryoları bu proje üzerinden gösteriliyor. Branch'ler geçici olduğu için repoda durmuyor; `main` her zaman yukarıdaki başlangıç durumunu taşır. |
 
-**Ders 4.4 — eksik özellik.** `GET /tasks?priority=high|medium|low` filtresi bilerek yok;
-derste TDD ile (önce test, sonra kod) canlı ekleniyor.
+<details>
+<summary>Eğitmen / takıldıysanız: kök nedenler (spoiler)</summary>
 
-**Ders 4.7 — tasarım farkı.** `public/dashboard.html` hedef tasarımdan küçük farklarla
-ayrılıyor: 2 sütunlu grid (hedef 3 sütun), tutarsız boşluklar (hedef `1.5rem`), lacivert
-başlık rengi (hedef mercan `#D97757`), görevler oluşturma sırasına göre listeleniyor
-(hedef önceliğe göre sıralı).
+- **4.3** — Kök neden `src/stats.js`'te değil; `src/routes/tasks.js`'teki tamamlama uç noktası
+  `stats.tamamlananiArttir()` çağrısını atlıyor. Belirti ile neden farklı dosyada.
+- **4.7** — Dört fark: 2 sütunlu grid (hedef 3 sütun), tutarsız boşluklar (hedef `1.5rem`),
+  lacivert başlık (hedef mercan `#D97757`), oluşturma sırası (hedef öncelik sırası).
 
-**Ders 4.8 — refactor hedefi.** `src/utils/fileStorage.js` bilerek callback tabanlı
-(`saveTasksToFile(gorevler, callback)`, `loadTasksFromFile(callback)`).
-`test/fileStorage.test.js` bu davranışı zaten kapsıyor; derste aynı davranış korunarak
-async/await'e taşınıyor.
-
-**Ders 4.5 / 4.6 / 4.9 / 4.10 — git ve GitHub.** Branch, conflict, PR ve worktree
-senaryoları bu proje üzerinden gösteriliyor. Branch'ler geçici olduğu için repoda durmuyor;
-`main` her zaman yukarıdaki başlangıç durumunu taşır.
+</details>
 
 ## Yapı
 
