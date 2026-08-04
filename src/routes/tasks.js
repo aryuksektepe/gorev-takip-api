@@ -2,9 +2,6 @@
 
 const express = require('express');
 const taskStore = require('../models/taskStore');
-// BİLİNÇLİ BUG (ders 4.3): ../stats modülü burada import edilmiyor, bu yüzden
-// tamamlama uç noktası stats.tamamlananiArttir()'i çağıramıyor. Öncelik filtresi
-// (GET /tasks?priority=...) de henüz burada yok - ders 4.4'te TDD ile canlı eklenecek.
 
 const router = express.Router();
 
@@ -39,9 +36,6 @@ router.post('/:id/tamamla', (req, res) => {
     return res.status(404).json({ hata: 'gorev bulunamadi' });
   }
 
-  // BİLİNÇLİ BUG: burada stats.tamamlananiArttir() çağrılması gerekirdi, çağrılmıyor.
-  // Bu yüzden /stats uç noktasındaki "tamamlanan" sayısı bu görev tamamlandıktan
-  // sonra da değişmeden kalıyor.
   res.json(gorev);
 });
 

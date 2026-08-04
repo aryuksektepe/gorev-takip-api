@@ -27,15 +27,9 @@ kök nedene inme" alıştırması, cevabı burada okursanız o alıştırma buha
 | 4.8 | Refactor hedefi | `src/utils/fileStorage.js` callback tabanlı. `test/fileStorage.test.js` davranışı zaten kapsıyor; derste davranış korunarak async/await'e taşınıyor. |
 | 4.5 · 4.6 · 4.9 · 4.10 | Git ve GitHub | Branch, conflict, PR ve worktree senaryoları bu proje üzerinden gösteriliyor. Branch'ler geçici olduğu için repoda durmuyor; `main` her zaman yukarıdaki başlangıç durumunu taşır. |
 
-<details>
-<summary>Eğitmen / takıldıysanız: kök nedenler (spoiler)</summary>
-
-- **4.3** — Kök neden `src/stats.js`'te değil; `src/routes/tasks.js`'teki tamamlama uç noktası
-  `stats.tamamlananiArttir()` çağrısını atlıyor. Belirti ile neden farklı dosyada.
-- **4.7** — Dört fark: 2 sütunlu grid (hedef 3 sütun), tutarsız boşluklar (hedef `1.5rem`),
-  lacivert başlık (hedef mercan `#D97757`), oluşturma sırası (hedef öncelik sırası).
-
-</details>
+Kök nedenler bu depoda **hiçbir yerde yazmıyor** — ne bu dosyada, ne kod yorumlarında.
+Bu bilinçli: derste Claude'a "kök nedeni bul" dediğimizde, cevabı okumuş olmasını değil,
+kodu okuyarak bulmasını istiyoruz. Takıldıysanız cevap ilgili dersin videosunda, adım adım.
 
 ## Yapı
 

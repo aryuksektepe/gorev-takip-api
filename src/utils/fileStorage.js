@@ -3,10 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ders 4.8'in refactor hedefi tam olarak bu dosya: callback tabanlı fonksiyonlar,
-// aynı davranışla async/await'e taşınacak. Şimdilik BİLİNÇLİ olarak callback
-// stilinde bırakıldı - mevcut testler (test/fileStorage.test.js) bu davranışı
-// zaten kapsıyor, refactor sırasında kırılmamaları gerekiyor.
+// Görev listesini diske yazar ve okur. Callback tabanlı; davranışı
+// test/fileStorage.test.js kapsıyor.
 
 const VARSAYILAN_DOSYA = path.join(__dirname, '..', '..', 'data', 'gorevler.json');
 

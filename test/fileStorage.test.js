@@ -5,8 +5,7 @@ const os = require('os');
 const path = require('path');
 const { saveTasksToFile, loadTasksFromFile } = require('../src/utils/fileStorage');
 
-// Ders 4.8'in refactor hedefi bu modül: callback tabanlı davranış burada
-// sabitleniyor, async/await'e geçişten sonra da bu testler yeşil kalmalı.
+// Modülün callback tabanlı davranışı burada sabitleniyor.
 
 describe('fileStorage (callback tabanlı)', () => {
   let testDosyaYolu;

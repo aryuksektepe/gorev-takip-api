@@ -3,11 +3,6 @@
 const request = require('supertest');
 const { uygulamaOlustur } = require('../src/app');
 
-// NOT: Bu dosya bilinçli olarak eksik. "Bir görev tamamlandığında /stats'taki
-// tamamlanan sayısı artar mı" senaryosu burada YOK - ders 4.3'ün canlı demosunda
-// Claude tarafından (önce kırmızı, sonra yeşil) yazılacak. Bkz. src/stats.js'teki
-// bilinçli bug notu.
-
 describe('GET /stats', () => {
   test('baslangictaki tamamlanan ve bekleyen sayilarini dogru hesaplar', async () => {
     const app = uygulamaOlustur({

@@ -1,7 +1,7 @@
 {
   "name": "gorev-takip-api",
   "version": "1.0.0",
-  "description": "Bolum 4 (ders 4.2-4.10) icin gorev takip API'si - Node.js + Express + Jest (bilinçli bug icerir)",
+  "description": "Gorev takip API'si - Node.js + Express + Jest",
   "private": true,
   "main": "src/server.js",
   "scripts": {

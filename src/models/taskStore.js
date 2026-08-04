@@ -1,7 +1,6 @@
 'use strict';
 
-// Görevler bellekte, basit bir dizide tutulur (ders 4.2'nin keşif demosunda
-// Claude'un bulduğu tam olarak budur: "görevler bellekte bir dizi olarak tutuluyor").
+// Görevler bellekte, basit bir dizide tutulur.
 
 let gorevler = [];
 let sonrakiId = 1;
