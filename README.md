@@ -13,23 +13,15 @@ npm test          # Jest — 12 test, hepsi yeşil
 npm start         # http://localhost:3000 · /tasks, /stats, /dashboard.html
 ```
 
-## Derslere göre bilerek bırakılan boşluklar
+## Bu bir eğitim projesi
 
-Bu proje eğitim için hazırlandı. Aşağıdaki eksikler ve hatalar **kasıtlıdır**, hata bildirmeye
-gerek yok. Belirtileri yazıyoruz; kök nedenleri yazmıyoruz — derslerin yarısı zaten "belirtiden
-kök nedene inme" alıştırması, cevabı burada okursanız o alıştırma buharlaşır.
+Kursun Bölüm 4'ü boyunca bu kod tabanının üstünde çalışılıyor. Bazı yerler **bilerek**
+eksik ya da hatalı bırakıldı — hata bildirmeye gerek yok. Neyin nerede eksik olduğunu,
+neden öyle bırakıldığını ve nasıl düzeltildiğini ilgili dersin kendisinde göreceksiniz.
 
-| Ders | Ne var / ne yok | Nasıl görünür |
-|---|---|---|
-| 4.3 | Bilinçli bug | Bir görev tamamlanınca `GET /stats`'taki `tamamlanan` sayısı artmıyor. `npm test` yine de tamamen yeşil — bu senaryoyu sınayan test yok. |
-| 4.4 | Eksik özellik | `GET /tasks?priority=high\|medium\|low` filtresi yok; derste TDD ile canlı ekleniyor. |
-| 4.7 | Tasarım farkı | `public/dashboard.html`, hedef tasarımdan birkaç noktada ayrılıyor. Farkları Claude'a buldurmak dersin kendisi. |
-| 4.8 | Refactor hedefi | `src/utils/fileStorage.js` callback tabanlı. `test/fileStorage.test.js` davranışı zaten kapsıyor; derste davranış korunarak async/await'e taşınıyor. |
-| 4.5 · 4.6 · 4.9 · 4.10 | Git ve GitHub | Branch, conflict, PR ve worktree senaryoları bu proje üzerinden gösteriliyor. Branch'ler geçici olduğu için repoda durmuyor; `main` her zaman yukarıdaki başlangıç durumunu taşır. |
-
-Kök nedenler bu depoda **hiçbir yerde yazmıyor** — ne bu dosyada, ne kod yorumlarında.
-Bu bilinçli: derste Claude'a "kök nedeni bul" dediğimizde, cevabı okumuş olmasını değil,
-kodu okuyarak bulmasını istiyoruz. Takıldıysanız cevap ilgili dersin videosunda, adım adım.
+Boşlukların listesi ve kök nedenler bu depoda **hiçbir yerde yazmıyor** — ne bu dosyada,
+ne kod yorumlarında. Bu bilinçli: derslerin yarısı "belirtiden kök nedene inme"
+alıştırması, cevap burada yazsaydı Claude onu okur ve alıştırma buharlaşırdı.
 
 ## Yapı
 
