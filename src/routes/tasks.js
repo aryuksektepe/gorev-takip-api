@@ -8,7 +8,19 @@ const router = express.Router();
 const GECERLI_ONCELIKLER = ['high', 'medium', 'low'];
 
 router.get('/', (req, res) => {
-  res.json(taskStore.tumunuGetir());
+  const { ara } = req.query;
+
+  if (ara === undefined) {
+    return res.json(taskStore.tumunuGetir());
+  }
+
+  const aranan = ara.trim().toLocaleLowerCase('tr');
+
+  const eslesenler = taskStore
+    .tumunuGetir()
+    .filter((gorev) => gorev.baslik.toLocaleLowerCase('tr').includes(aranan));
+
+  res.json(eslesenler);
 });
 
 router.post('/', (req, res) => {

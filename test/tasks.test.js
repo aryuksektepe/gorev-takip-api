@@ -7,6 +7,36 @@ function testAppOlustur(baslangicGorevleri = []) {
   return uygulamaOlustur({ baslangicGorevleri });
 }
 
+describe('GET /tasks?ara=', () => {
+  const gorevler = [
+    { id: 1, baslik: 'Ali icin rapor hazirla', oncelik: 'high', tamamlandi: false },
+    { id: 2, baslik: 'Dashboard tasarimini gozden gecir', oncelik: 'medium', tamamlandi: false },
+    { id: 3, baslik: 'RAPOR sablonunu guncelle', oncelik: 'low', tamamlandi: true },
+  ];
+
+  test('basligi eslesen gorevleri doner', async () => {
+    const res = await request(testAppOlustur(gorevler)).get('/tasks?ara=rapor');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((gorev) => gorev.id)).toEqual([1, 3]);
+  });
+
+  test('buyuk-kucuk harf farki aramayi bozmaz', async () => {
+    const res = await request(testAppOlustur(gorevler)).get('/tasks?ara=DASHBOARD');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveLength(1);
+    expect(res.body[0].id).toBe(2);
+  });
+
+  test('eslesme yoksa bos dizi doner', async () => {
+    const res = await request(testAppOlustur(gorevler)).get('/tasks?ara=xyz');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([]);
+  });
+});
+
 describe('GET /tasks', () => {
   test('mevcut görevleri listeler', async () => {
     const app = testAppOlustur([
